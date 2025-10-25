@@ -1,0 +1,47 @@
+<%- include("partials/header") %>
+
+<!-- Form to Add New Book -->
+<form action="/add" method="POST" class="add-form">
+  <input type="text" name="title" placeholder="Book title" required>
+  <input type="text" name="author" placeholder="Author name" required>
+  <input type="text" name="cover_id" placeholder="OpenLibrary cover ID (optional)">
+  <input type="text" name="review" placeholder="Write your review">
+  <input type="number" name="rating" placeholder="Rating 1-5" min="1" max="5">
+  <input type="text" name="book_url" placeholder="Open Library URL (optional)">
+  <button type="submit">Add Book</button>
+</form>
+
+
+
+<!-- Display Books from Database -->
+<div class="book-list">
+  <% if (books.length === 0) { %>
+    <p>No books added yet.</p>
+  <% } else { %>
+    <% books.forEach(book => { %>
+      <div class="book">
+        <% if (book.cover_id) { %>
+          <img src="https://covers.openlibrary.org/b/id/<%= book.cover_id %>-M.jpg" alt="Book cover">
+        <% } %>
+        <div class="book-info">
+          <h2><%= book.title %></h2>
+          <p>by <%= book.author %></p>
+
+          <% if (book.review) { %>
+            <p>Review: <%= book.review %></p>
+          <% } %>
+
+          <% if (book.rating) { %>
+            <p>Rating: <%= book.rating %>/5</p>
+          <% } %>
+
+          <% if (book.book_url) { %>
+            <a href="<%= book.book_url %>" target="_blank">View on Open Library</a>
+          <% } %>
+        </div>
+      </div>
+    <% }) %>
+  <% } %>
+</div>
+
+<%- include("partials/footer") %>
