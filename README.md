@@ -1,4 +1,4 @@
-# BookTracker
+# OpenBook-BookTracker
 
 A personal book library web app to track books, reviews, ratings, and view Open Library links. Built with Node.js, Express, EJS, and PostgreSQL.
 
